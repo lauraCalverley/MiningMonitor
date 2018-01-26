@@ -1,0 +1,8 @@
+{
+  "name": "miningPoolMonitor",
+  "app_id": "2358f766",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
