@@ -16,4 +16,9 @@ export class GithubUsersProvider {
       .map(res => res as User[] || []);
   }
 
+  loadDetails(login: string): Observable<User> {
+    return this.http.get(`${this.githubApiUrl}/users/${login}`)
+      .map(res => res as User || null)
+  }
+
 }
