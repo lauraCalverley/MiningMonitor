@@ -15,8 +15,8 @@ export class UserDetailsPage {
   user: User
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private githubUsers: GithubUsersProvider) {
-    this.login = navParams.get('login');
-    githubUsers.loadDetails(this.login).subscribe(user => {
+    this.login = this.navParams.get('login');
+    this.githubUsers.loadDetails(this.login).subscribe(user => {
       this.user = user
     });
   }

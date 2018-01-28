@@ -33,7 +33,7 @@ export class UsersPage {
     } else {
       this.githubUsers.searchUsers(term).subscribe(users => {
         console.log(users)
-        this.users = users.items
+        this.users = users
       })
     }
   }

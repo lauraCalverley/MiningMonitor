@@ -23,7 +23,6 @@ export class GithubUsersProvider {
 
   searchUsers(searchParam: string): Observable<User[]> {
     return this.http.get(`${this.githubApiUrl}/search/users?q=${searchParam}`)
-      .map(res => res as User[] || [])
+      .map(res => res as User[] || []) //TODO res.items will give the actual users but breaks build
+    }
   }
-
-}
