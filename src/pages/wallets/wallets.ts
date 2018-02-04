@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { AddWalletPage } from '../add-wallet/add-wallet';
 
@@ -10,11 +10,21 @@ import { AddWalletPage } from '../add-wallet/add-wallet';
 })
 export class WalletsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  amount: number
+
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
   }
 
   goToAddWallet() {
-    this.navCtrl.push(AddWalletPage)
+
+    let modal = this.modalCtrl.create(AddWalletPage)
+
+    modal.onDidDismiss((response) => {
+      this.amount = response
+    })
+
+    modal.present()
+
   }
 
 }

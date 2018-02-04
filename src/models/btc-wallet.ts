@@ -2,5 +2,6 @@
 // https://blockchain.info/rawaddr/{address} api
 export interface BtcWallet {
   address: string,
-  final_balance: number
+  final_balance: number,
+  name: string
 }
