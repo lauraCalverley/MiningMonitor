@@ -13,8 +13,10 @@
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
-  <h3>Wallets list here</h3>
-  <h6>{{ name }}</h6>
-  <h6>{{ address }}</h6>
-  <h6>{{ amount }} BTC</h6>
+  <ion-list>
+    <button ion-item *ngFor="let wallet of wallets">
+      {{ wallet.name }} {{ wallet.address }}<br />
+      {{ wallet.amount }} {{ wallet.type }}
+    </button>
+  </ion-list>
 </ion-content>

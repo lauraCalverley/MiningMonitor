@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, Events } from 'ionic-angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BtcProvider } from '../../providers/btc/btc';
+import { Wallet } from '../../models/wallet'
 
 @IonicPage()
 @Component({
@@ -27,14 +28,11 @@ export class AddWalletPage {
 
   addWallet() {
     this.btcProvider.getWalletInfo(this.wallet.value.address).subscribe(wallet => {
-      console.log(wallet)
-      wallet.name = this.wallet.value.name
-      this.amount = wallet.final_balance / 100000000
-
-      let response = {
+      let response : Wallet = {
         name: this.wallet.value.name,
         amount: this.amount,
-        address: this.wallet.value.address
+        address: this.wallet.value.address,
+        type: 'BTC'
       }
 
       this.events.publish('wallet:added', response)

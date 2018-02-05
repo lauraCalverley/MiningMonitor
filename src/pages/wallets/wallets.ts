@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, Events } from 'ionic-angular';
 
+import { Wallet } from '../../models/wallet'
 import { AddWalletPage } from '../add-wallet/add-wallet';
 
 @IonicPage()
@@ -10,18 +11,21 @@ import { AddWalletPage } from '../add-wallet/add-wallet';
 })
 export class WalletsPage {
 
-  address: string
-  amount: number
-  name: string
+  wallets: Wallet[]
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public events: Events) {
+    this.wallets = []
   }
 
   ionViewDidLoad() {
     this.events.subscribe('wallet:added', (wallet) => {
-      this.address = wallet.address
-      this.amount = wallet.amount
-      this.name = wallet.name
+      let newWallet = {
+        type: wallet.type,
+        address: wallet.address,
+        name: wallet.name,
+        amount: wallet.amount
+      }
+      this.wallets.push(newWallet)
     })
   }
 
