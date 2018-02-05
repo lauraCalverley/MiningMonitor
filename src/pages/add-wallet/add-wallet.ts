@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, Events, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 import { BtcProvider } from '../../providers/btc/btc';
 import { Wallet } from '../../models/wallet';
 
@@ -19,7 +20,8 @@ export class AddWalletPage {
     private btcProvider : BtcProvider,
     public viewCtrl: ViewController,
     public events: Events,
-    private toastCtrl: ToastController)
+    private toastCtrl: ToastController,
+    private storage: Storage)
   {
     this.wallet = this.formBuilder.group({
       name: [''],
@@ -36,8 +38,14 @@ export class AddWalletPage {
         type: 'BTC'
       }
 
-      this.showToast('Wallet Added!')
-      this.events.publish('wallet:added', response)
+      this.walletExists(response.address).then(exists => {
+        if(!exists) {
+          this.showToast('Wallet Added!')
+          this.events.publish('wallet:added', response)
+        } else {
+          this.showToast('You are already tracking this wallet')
+        }
+      })
     }, (err) => {
       console.log(JSON.stringify(err))
     })
@@ -55,6 +63,18 @@ export class AddWalletPage {
       cssClass: 'ta-c'
     })
     toast.present()
+  }
+
+  walletExists(address: string) : Promise<boolean> {
+    let exists : boolean = false;
+    return this.storage.get('wallets').then((wallets) => {
+      for(let wallet of wallets) {
+        if(wallet.address === address) {
+          exists = true
+        }
+      }
+      return exists
+    })
   }
 
 }
