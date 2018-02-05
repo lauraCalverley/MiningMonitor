@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { BtcProvider } from '../../providers/btc/btc';
 import { Wallet } from '../../models/wallet';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 
 @IonicPage()
 @Component({
@@ -12,8 +13,10 @@ import { Wallet } from '../../models/wallet';
 })
 export class AddWalletPage {
 
+  scannerOptions: BarcodeScannerOptions
+
   private wallet : FormGroup
-  amount: number
+  address: string
 
   constructor(public navCtrl: NavController,
     private formBuilder: FormBuilder,
@@ -21,12 +24,18 @@ export class AddWalletPage {
     public viewCtrl: ViewController,
     public events: Events,
     private toastCtrl: ToastController,
-    private storage: Storage)
+    private storage: Storage,
+    private barcode: BarcodeScanner)
   {
     this.wallet = this.formBuilder.group({
       name: [''],
       address: []
     })
+  }
+
+  async scanQr() {
+    const results = await this.barcode.scan()
+    this.address = results.text
   }
 
   addWallet() {
