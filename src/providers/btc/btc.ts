@@ -13,7 +13,8 @@ export class BtcProvider {
   constructor(public http: HttpClient) {}
 
   getWalletInfo(addr: string): Observable<BtcWallet> {
-    return this.http.get(`${this.btcBaseApi}/rawaddr/${addr}`)
+    let url = `${this.btcBaseApi}/rawaddr/${addr}`
+    return this.http.get(url)
       .map(res => res as BtcWallet)
   }
 

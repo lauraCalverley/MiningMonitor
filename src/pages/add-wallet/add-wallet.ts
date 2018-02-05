@@ -28,16 +28,18 @@ export class AddWalletPage {
   }
 
   addWallet() {
-    this.btcProvider.getWalletInfo(this.wallet.value.address).subscribe(wallet => {
+    this.btcProvider.getWalletInfo(this.wallet.value.address).subscribe((wallet) => {
       let response : Wallet = {
         name: this.wallet.value.name,
-        amount: this.amount,
+        amount: wallet.final_balance / 100000000,
         address: this.wallet.value.address,
         type: 'BTC'
       }
 
       this.showToast('Wallet Added!')
       this.events.publish('wallet:added', response)
+    }, (err) => {
+      console.log(JSON.stringify(err))
     })
   }
 
