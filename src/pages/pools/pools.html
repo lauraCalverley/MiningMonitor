@@ -11,5 +11,12 @@
 
 
 <ion-content padding>
-<h6>Pools Page Here</h6>
+  <ion-list>
+    <button ion-item *ngFor="let pool of pools" (click)="poolSelected($event, pool)">
+      {{ pool.name }}
+      <div class="item-note" item-right>
+        {{ pool.coin }}
+      </div>
+    </button>
+  </ion-list>
 </ion-content>

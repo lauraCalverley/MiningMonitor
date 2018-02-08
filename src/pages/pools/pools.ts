@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the PoolsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-pools',
@@ -15,11 +8,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PoolsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  pools: Array<{name: string, coin: string}>
+
+  constructor() {
+    this.pools = []
+    this.pools.push({
+      name: 'Son of a Tech',
+      coin: 'BTCZ'
+    })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PoolsPage');
+  poolSelected(event, pool) {
+    console.log(pool)
   }
 
 }
