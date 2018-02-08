@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
+
+import { PoolPage } from '../pool/pool';
 
 @IonicPage()
 @Component({
@@ -10,7 +12,7 @@ export class PoolsPage {
 
   pools: Array<{name: string, coin: string}>
 
-  constructor() {
+  constructor(private navCtrl: NavController) {
     this.pools = []
     this.pools.push({
       name: 'Son of a Tech',
@@ -19,7 +21,7 @@ export class PoolsPage {
   }
 
   poolSelected(event, pool) {
-    console.log(pool)
+    this.navCtrl.push(PoolPage)
   }
 
 }
