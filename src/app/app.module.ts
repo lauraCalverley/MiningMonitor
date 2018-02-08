@@ -17,6 +17,7 @@ import { PoolPage } from '../pages/pool/pool';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BtcProvider } from '../providers/btc/btc';
+import { SoatBtczProvider } from '../providers/soat-btcz/soat-btcz';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { BtcProvider } from '../providers/btc/btc';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
-    BtcProvider
+    BtcProvider,
+    SoatBtczProvider
   ]
 })
 export class AppModule {}
