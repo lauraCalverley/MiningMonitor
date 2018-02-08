@@ -11,6 +11,7 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { WalletsPage } from '../pages/wallets/wallets';
 import { AddWalletPage } from '../pages/add-wallet/add-wallet';
+import { PoolsPage } from '../pages/pools/pools';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,7 +24,8 @@ import { BtcProvider } from '../providers/btc/btc';
     ItemDetailsPage,
     ListPage,
     WalletsPage,
-    AddWalletPage
+    AddWalletPage,
+    PoolsPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { BtcProvider } from '../providers/btc/btc';
     ItemDetailsPage,
     ListPage,
     WalletsPage,
-    AddWalletPage
+    AddWalletPage,
+    PoolsPage
   ],
   providers: [
     StatusBar,
