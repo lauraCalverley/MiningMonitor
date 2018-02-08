@@ -16,7 +16,6 @@ export class AddWalletPage {
   scannerOptions: BarcodeScannerOptions
 
   private wallet : FormGroup
-  address: string
 
   constructor(public navCtrl: NavController,
     private formBuilder: FormBuilder,
@@ -35,7 +34,7 @@ export class AddWalletPage {
 
   async scanQr() {
     const results = await this.barcode.scan()
-    this.address = results.text
+    this.wallet.patchValue({address: results.text})
   }
 
   addWallet() {
